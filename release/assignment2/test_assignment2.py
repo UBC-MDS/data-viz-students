@@ -65,7 +65,7 @@ def test_1_8(answer):
 
 def test_2_1(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert answer.shape == (890, 14), "Your dataframe dimensions are incorrect. Are you subsetting the data correctly?"
+    assert answer.shape == (1068, 14), "Your dataframe dimensions are incorrect. Are you subsetting the data correctly?"
     msg = "Your dataframe contains the incorrect columns. Are you using the correct index column? \
     \nExpected ['child_mortality', 'children_per_woman', 'co2_per_capita', 'country'], but got {0}".format(
         sorted(list(answer.columns))[0:4])
@@ -75,12 +75,12 @@ def test_2_1(answer):
     ), "Some values in your dataframe are incorrect. Do you have the correct dataframe?"
     assert sum(
         list(answer.income)
-    ) == 7206520, "Some values in your dataframe are incorrect. Do you have the correct dataframe?"
+    ) == 9195497, "Some values in your dataframe are incorrect. Do you have the correct dataframe?"
     return("Success")
 
 def test_2_2_1(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert answer.data.groupby('country').count().loc['Afghanistan','year'] == 5, "Are you using the 'gapminder_every20' dataset?"
+    assert answer.data.groupby('country').count().loc['Afghanistan','year'] == 6, "Are you using the 'gapminder_every20' dataset?"
     assert answer.mark == 'circle', "Make sure you are creating a scatter plot using the 'mark.circle()' function."
     assert answer.encoding.x.shorthand == 'children_per_woman' or answer.encoding.x.field == 'children_per_woman', "Make sure you are plotting 'children_per_woman' on the x-axis."
     assert answer.encoding.y.shorthand == 'child_mortality' or answer.encoding.y.field == 'child_mortality', "Make sure you are plotting 'child_mortality' on the y-axis."
