@@ -40,8 +40,8 @@ def test_1_4(answer):
 
 def test_1_5(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert isinstance(answer, np.int64), "Make sure your answer is of type integer."
-    assert sha1(str(answer).encode('utf8')).hexdigest() == "fe5dbbcea5ce7e2988b8c69bcfdfde8904aabc1f", "Your answer is incorrect. Please try again. The unique function might be useful here."
+    assert isinstance(answer, int), "Make sure your answer is of type integer."
+    assert sha1(str(answer).encode('utf8')).hexdigest() == "e3cbba8883fe746c6e35783c9404b4bc0c7ee9eb", "Your answer is incorrect. Please try again. The unique function might be useful here."
     return(success)
 
 def test_1_6(answer):
