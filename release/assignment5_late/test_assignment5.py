@@ -24,6 +24,14 @@ def test_1_1(answer):
     )) == 986, "Some values in your dataframe are incorrect. Do you have the correct dataframe?"
     return(success)
 
+def test_1_2_new(answer):
+    assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
+    assert isinstance(answer, list), "Make sure your answer is of type list."
+    answer = [x.lower() for x in sorted(answer)]
+    assert len(answer) == 4, "The length of your answer is incorrect."
+    assert sha1(str(answer).encode('utf8')).hexdigest() == "e92ae78645e9479d96660fa380bd379dbafc94b5", "Your answer is incorrect. Please try again."
+    return(success)
+
 def test_1_2(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
     assert isinstance(answer, list), "Make sure your answer is of type list."
@@ -31,6 +39,7 @@ def test_1_2(answer):
     assert len(answer) == 5, "The length of your answer is incorrect."
     assert sha1(str(answer).encode('utf8')).hexdigest() == "7a475469311b4cc276c05507d630bad34d28a13a", "Your answer is incorrect. Please try again."
     return(success)
+
 
 def test_1_3(answer):
     assert sha1(answer.mark.color.encode('utf8')).hexdigest() == "bc74f4f071a5a33f00ab88a6d6385b5e6638b86c", "The color is incorrect. Are you examining the original plot correctly?"
@@ -105,7 +114,7 @@ def test_2_3(answer):
     assert sha1(str(answer.encoding.x.scale.domain).encode('utf8')).hexdigest() == "d5e2a943d04efce547862f94d68e954999b19dbc", "The domain is incorrect. Are you examining the sample plot correctly?"
     assert sha1(answer.encoding.x.axis.format.encode('utf8')).hexdigest() == "3cdf2936da2fc556bfa533ab1eb59ce710ac80e5", "Your x-axis formatting is incorrect. Are you examining the sample plot correctly?"
     assert sha1(answer.encoding.y.field.encode('utf8')).hexdigest() == "30603fa9e0f620c305cd627ab0ff138a960c48bd", "Your x-axis is incorrect. Are you examining the plot sample correctly?"
-    assert sha1(str(answer.encoding.y.sort).encode('utf8')).hexdigest() == "6274d09f990d0c683058d941dac960d7d39d819a", "Your sorting is incorrect. Are you examining the sample plot correctly?"  
+    # assert sha1(str(answer.encoding.y.sort).encode('utf8')).hexdigest() == "6274d09f990d0c683058d941dac960d7d39d819a", "Your sorting is incorrect. Are you examining the sample plot correctly?"  
     assert answer.encoding.color.legend is None, "Make sure the plot legend is omitted."
     return(success)
 
