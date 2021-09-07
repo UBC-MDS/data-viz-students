@@ -89,9 +89,15 @@ def test_2_2_1(answer):
 
 def test_2_2_2(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert not answer.encoding.y.title is None, "Make sure you are providing a title for your Y-axis"
-    assert not answer.encoding.y.title is None, "Make sure you are providing a title for your X-axis"
-    assert not answer.title is None, "Make sure you are providng a title for your plot"
+    assert not str(type(answer.encoding.x.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for your x-axis."
+    assert answer.encoding.x.title.count("_") == 0, "Make sure your x-axis title does not contain underscores."
+    assert not answer.encoding.x.title.islower(), "Make sure the plot x-axis title is capitalized."
+    assert not str(type(answer.encoding.y.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for your y-axis."
+    assert answer.encoding.y.title.count("_") == 0, "Make sure your y-axis title does not contain underscores."
+    assert not answer.encoding.y.title.islower(), "Make sure the plot y-axis title is capitalized."
+    assert not str(type(answer.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for the plot."
+    assert answer.title.count("_") == 0, "Make sure your plot title does not contain underscores."
+    assert not answer.title.islower(), "Make sure the plot title is capitalized."
     return("Success")
 
 def test_2_3(answer):
@@ -102,12 +108,12 @@ def test_2_3(answer):
 def test_2_4(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
     assert sha1(str(len(answer)).encode('utf8')).hexdigest() == "77de68daecd823babbb58edb1c8e14d7106e83bb", "The number of correct solutions is incorrect. Please try again"
-    assert sha1(str(sorted([x.lower() for x in answer])).encode('utf8')).hexdigest() == "00dd0637ea7a465c83c8998839813d71f0f956a3", "Your answer is incorrect. Please try again. Are you examing the plots correctly?"
+    assert sha1(str(sorted([x.lower() for x in answer])).encode('utf8')).hexdigest() == "00dd0637ea7a465c83c8998839813d71f0f956a3", "Your answer is incorrect. Please try again. Are you examining the plots correctly?"
     return("Success")
 
 def test_3_1(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert sha1(str(answer).encode('utf8')).hexdigest() == "39e21432a7dcba489697b4ef779f4b0c6f08b89f", "Your answer is incorrect. The 'max' and 'isna() functions might be useful here."
+    assert sha1(str(answer).encode('utf8')).hexdigest() == "39e21432a7dcba489697b4ef779f4b0c6f08b89f", "Your answer is incorrect. The 'max' and 'isna()' functions might be useful here."
     return("Success")
 
 def test_3_2(answer):
@@ -153,10 +159,16 @@ def test_3_4_1(answer):
 
 def test_3_4_2(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert not answer.encoding.y.title is None, "Make sure you are providing a title for your Y-axis"
-    assert not answer.encoding.y.title is None, "Make sure you are providing a title for your X-axis"
-    assert not answer.title is None, "Make sure you are providng a title for your plot"
-    assert answer.encoding.y.sort == 'x' or answer.encoding.y.sort == 'x', "Make sure you are sorting the y-axis based on X-axis values"
+    assert not str(type(answer.encoding.x.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for your x-axis."
+    assert answer.encoding.x.title.count("_") == 0, "Make sure your x-axis title does not contain underscores."
+    assert not answer.encoding.x.title.islower(), "Make sure the plot x-axis title is capitalized."
+    assert not str(type(answer.encoding.y.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for your y-axis."
+    assert answer.encoding.y.title.count("_") == 0, "Make sure your y-axis title does not contain underscores."
+    assert not answer.encoding.y.title.islower(), "Make sure the plot y-axis title is capitalized."
+    assert not str(type(answer.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for the plot."
+    assert answer.title.count("_") == 0, "Make sure your plot title does not contain underscores."
+    assert not answer.title.islower(), "Make sure the plot title is capitalized."
+    assert answer.encoding.y.sort == 'x' or answer.encoding.y.sort == 'x', "Make sure you are sorting the y-axis based on x-axis values."
     return("success")
 
 def test_3_5(answer):
@@ -172,7 +184,7 @@ def test_3_6(answer):
 
 def test_3_8(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert answer.shape == (38982, 15), "Your dataframe dimensions are incorrect. Are you adding the the new column?"
+    assert answer.shape == (38982, 15), "Your dataframe dimensions are incorrect. Are you adding the new column?"
     assert "co2_total" in list(answer.columns), "Make sure you are adding 'co2_total' as a new column"
     assert np.nanmax(list(answer.co2_total)) == 10286000000.0, "The maximum value for 'co2_total' is incorrect. Are you computing this value correctly?"
     assert np.nanmin(list(answer.co2_total))  == 0.0, "The maximum value for 'co2_total' is incorrect. Are you computing this value correctly?"
@@ -193,15 +205,21 @@ def test_3_10_1(answer):
     assert answer.encoding.x.shorthand == 'co2_total' or answer.encoding.x.field == 'co2_total', "Make sure you are plotting 'co2_total' on the x-axis."
     assert answer.encoding.y.shorthand == 'country' or answer.encoding.y.field == 'country', "Make sure you are plotting 'country' on the y-axis."
     assert answer.encoding.color.shorthand == 'region' or answer.encoding.color.field == 'region', "Make sure you are coloring by 'region'."
-    assert answer.encoding.y.sort == 'x' or answer.encoding.y.sort == 'x', "Make sure you are sorting the y-axis based on X-axis values"
+    assert answer.encoding.y.sort == 'x' or answer.encoding.y.sort == 'x', "Make sure you are sorting the y-axis based on x-axis values."
     return ("Success")
 
 
 def test_3_10_2(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert not answer.encoding.y.title is None, "Make sure you are providing a title for your Y-axis"
-    assert not answer.encoding.y.title is None, "Make sure you are providing a title for your X-axis"
-    assert not answer.title is None, "Make sure you are providng a title for your plot"
+    assert not str(type(answer.encoding.x.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for your x-axis."
+    assert answer.encoding.x.title.count("_") == 0, "Make sure your x-axis title does not contain underscores."
+    assert not answer.encoding.x.title.islower(), "Make sure the plot x-axis title is capitalized."
+    assert not str(type(answer.encoding.y.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for your y-axis."
+    assert answer.encoding.y.title.count("_") == 0, "Make sure your y-axis title does not contain underscores."
+    assert not answer.encoding.y.title.islower(), "Make sure the plot y-axis title is capitalized."
+    assert not str(type(answer.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for the plot."
+    assert answer.title.count("_") == 0, "Make sure your plot title does not contain underscores."
+    assert not answer.title.islower(), "Make sure the plot title is capitalized."
     return("Success")
 
 def test_3_11(answer):
@@ -216,7 +234,7 @@ def test_3_12(answer):
 
 def test_3_13_1(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert answer.mark == 'area', "Make sure you are creating a area plot using the 'mark.area()' function."
+    assert answer.mark == 'area', "Make sure you are creating an area plot using the 'mark.area()' function."
     assert answer.encoding.x.shorthand == 'year' or answer.encoding.x.field == 'year', "Make sure you are plotting 'year' on the x-axis."
     assert answer.encoding.y.field, "Make sure you are plotting 'sum(co2_total)' on the y-axis."
     assert answer.encoding.color.shorthand == 'region' or answer.encoding.color.field == 'region', "Make sure you are coloring by 'region'."
@@ -225,9 +243,15 @@ def test_3_13_1(answer):
 
 def test_3_13_2(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert not answer.encoding.y.title is None, "Make sure you are providing a title for your Y-axis"
-    assert not answer.encoding.y.title is None, "Make sure you are providing a title for your X-axis"
-    assert not answer.title is None, "Make sure you are providng a title for your plot"
+    assert not str(type(answer.encoding.x.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for your x-axis."
+    assert answer.encoding.x.title.count("_") == 0, "Make sure your x-axis title does not contain underscores."
+    assert not answer.encoding.x.title.islower(), "Make sure the plot x-axis title is capitalized."
+    assert not str(type(answer.encoding.y.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for your y-axis."
+    assert answer.encoding.y.title.count("_") == 0, "Make sure your y-axis title does not contain underscores."
+    assert not answer.encoding.y.title.islower(), "Make sure the plot y-axis title is capitalized."
+    assert not str(type(answer.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for the plot."
+    assert answer.title.count("_") == 0, "Make sure your plot title does not contain underscores."
+    assert not answer.title.islower(), "Make sure the plot title is capitalized."
     return("Success")
 
 def test_3_14(answer):
@@ -266,17 +290,23 @@ def test_4_2_1(answer):
 
 def test_4_2_2(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert not answer.encoding.y.title is None, "Make sure you are providing a title for your Y-axis"
-    assert not answer.encoding.y.title is None, "Make sure you are providing a title for your X-axis"
-    assert not answer.title is None, "Make sure you are providng a title for your plot"
+    assert not str(type(answer.encoding.x.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for your x-axis."
+    assert answer.encoding.x.title.count("_") == 0, "Make sure your x-axis title does not contain underscores."
+    assert not answer.encoding.x.title.islower(), "Make sure the plot x-axis title is capitalized."
+    assert not str(type(answer.encoding.y.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for your y-axis."
+    assert answer.encoding.y.title.count("_") == 0, "Make sure your y-axis title does not contain underscores."
+    assert not answer.encoding.y.title.islower(), "Make sure the plot y-axis title is capitalized."
+    assert not str(type(answer.title)) == "<class 'altair.utils.schemapi.UndefinedType'>", "Make sure you are providing a title for the plot."
+    assert answer.title.count("_") == 0, "Make sure your plot title does not contain underscores."
+    assert not answer.title.islower(), "Make sure the plot title is capitalized."
     return("Success")
 
 def test_4_3(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert answer.facet.shorthand == 'year' or answer.facet.field == 'year', "Make sure the plot is faceted based on 'year'."
+    assert answer.facet.shorthand == 'year' or answer.facet.field == 'year' or answer.facet.column == 'year' or answer.facet.row == 'year', "Make sure the plot is faceted based on 'year'."
     return ("Success")
 
 def test_4_5(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
-    assert sha1((answer.lower()).encode('utf8')).hexdigest() == "fb360f9c09ac8c5edb2f18be5de4e80ea4c430d0", "Your answer is incorrect. Please try again. Are you examing the plots correctly?"
+    assert sha1((answer.lower()).encode('utf8')).hexdigest() == "fb360f9c09ac8c5edb2f18be5de4e80ea4c430d0", "Your answer is incorrect. Please try again. Are you examining the plots correctly?"
     return("Success")

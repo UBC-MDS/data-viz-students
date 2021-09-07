@@ -75,7 +75,7 @@ def test_2_2(answer):
 def test_2_3(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
     assert answer.shape[0] == 178, "Your answer has incorrect number of rows. Please make sure you are filtering for only the observations from year 1962."
-    assert answer.shape[1] == 14, "Your answer has incorrect number of columns. Please make sure you are returning the same number of columns as original dataframe"
+    assert answer.shape[1] == 14, "Your answer has incorrect number of columns. Please make sure you are returning the same number of columns as the original dataframe."
     assert set(answer['year']) == {pd.Timestamp('1962-01-01 00:00:00')}, "Your answer is incorrect. Please make sure the 'year' column is of type datetime and you are filtering for only the observations from year 1962."
     return("Success")
 
@@ -120,7 +120,7 @@ def test_3_1(answer):
 def test_3_2(answer):
     assert not answer is None, "Your answer does not exist. Have you passed in the correct variable?"
     assert answer.shape[0] == 7832, "Your answer has incorrect number of rows. Please make sure you are filtering for only the observations between years 1971 and 2014, inclusive."
-    assert answer.shape[1] == 15, "Your answer has incorrect number of columns. Please make sure you are returning the same number of columns as the gapminder_ratio_df dataframe"
+    assert answer.shape[1] == 15, "Your answer has incorrect number of columns. Please make sure you are returning the same number of columns as the `gapminder_ratio_df` dataframe."
     assert len(set(answer['year'])) == 44, "Your answer is incorrect. Please make sure the 'year' column is of type datetime and you are filtering for only the observations between years 1971 and 2014, inclusive."
     return("Success")
 
