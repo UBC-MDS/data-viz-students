@@ -576,7 +576,7 @@ def test_4_1b(answer):
     ), 'Make sure you specify Y-axis to be sorted in the following order: ["L", "R", "B", "No Record"]'
     
     assert answer.encoding.y.scale != alt.utils.schemapi.Undefined and (
-        answer.encoding.y.scale.domain == ["L", "R", "B", "No record"]
+        answer.encoding.y.scale.domain == ["L", "R", "B", "No Record"]
     ), 'Make sure you specify Y-axis to have the following domain: ["L", "R", "B", "No Record"]'
     
     # Not a typo. This plot should not have a title. 
